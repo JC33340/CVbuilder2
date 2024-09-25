@@ -1,9 +1,14 @@
+import Section from "./components/Section"
+import GeneralInfo from "./components/GeneralInfo"
+
 
 function App() {
 
   return (
-    <div className='text-4xl'>
-      New CV building app
+    <div className="p-6">
+      <Section header="General Info">
+        <GeneralInfo />
+      </Section>
     </div>
   )
 }
