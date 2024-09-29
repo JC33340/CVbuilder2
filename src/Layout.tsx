@@ -2,7 +2,8 @@ import { Outlet } from "react-router"
 import Header from './components/Header'
 import { createContext, useState} from "react"
 
-type generalInfoStateType = {
+//type for general type
+type generalInfoType = {
     firstName:string,
     lastName:string,
     email:string,
@@ -10,10 +11,26 @@ type generalInfoStateType = {
     briefSummary:string
 }
 
+//type for education info
+type educationInfoType = {
+    institute?:string,
+    subject?:string,
+    currentlyStudying?:boolean,
+    startDate?:string,
+    endDate?:string,
+    grade?:string,
+    qualificationLevel?:string,
+    additionalInformation?:string
+}[]|[]
+
 type contextType = {
     generalInfo:{
-        state:generalInfoStateType,
-        setter:(obj:generalInfoStateType)=>void
+        state:generalInfoType,
+        setter:(obj:generalInfoType)=>void
+    },
+    educationInfo:{
+        state:educationInfoType,
+        setter:(obj:educationInfoType)=>void
     }
 }
 
@@ -26,14 +43,18 @@ const userContext = createContext<contextType>({
             contactNumber:'',
             briefSummary:''
         }, 
-        setter:(obj:generalInfoStateType)=>{}
+        setter:(obj:generalInfoType)=>{}
+    },
+    educationInfo:{
+        state:[],
+        setter:(obj:educationInfoType)=>{}
     }
 });
 
 const Layout = ()=>{
 
     //general info
-    const [generalInfo,setGeneralInfo] = useState<generalInfoStateType>({
+    const [generalInfo,setGeneralInfo] = useState<generalInfoType>({
         firstName:'',
         lastName:'',
         email:'',
@@ -41,10 +62,16 @@ const Layout = ()=>{
         briefSummary:''
     })
 
-    const updateGeneralInfo = (obj:generalInfoStateType)=>{
+    const updateGeneralInfo = (obj:generalInfoType)=>{
         setGeneralInfo(obj)
     }
 
+    //education info
+    const [educationInfo,setEducationInfo] = useState<educationInfoType>([])
+
+    const updateEducationlInfo = (obj:educationInfoType)=>{
+        setEducationInfo(obj)
+    }
 
     return (
         <>
@@ -53,6 +80,10 @@ const Layout = ()=>{
                 generalInfo:{
                     state:generalInfo,
                     setter:updateGeneralInfo
+                },
+                educationInfo:{
+                    state:educationInfo,
+                    setter:updateEducationlInfo
                 }
             }}>
                 <Outlet />
@@ -65,4 +96,5 @@ const Layout = ()=>{
 export {Layout}
 export {userContext}
 
-export { type generalInfoStateType}
+export { type generalInfoType}
+export { type educationInfoType}

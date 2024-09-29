@@ -2,14 +2,14 @@ import Input from './Input'
 import {useState,useContext,useEffect} from 'react'
 import { userContext } from '../Layout'
 import Textarea from './Textarea'
-import { type generalInfoStateType } from '../Layout'
+import { type generalInfoType } from '../Layout'
 
 
 const GeneralInfo = ()=>{
 
     const context = useContext(userContext);
 
-    const [generalInfoState,setGeneralInfoState] = useState<generalInfoStateType>({
+    const [generalInfoState,setGeneralInfoState] = useState<generalInfoType>({
         firstName:'',
         lastName:'',
         email:'',
@@ -50,7 +50,7 @@ const GeneralInfo = ()=>{
             <Input placeholder='Last Name' label='Last Name:' handleChange={handleChange} name ='lastName' value={generalInfoState.lastName}/>
             <Input placeholder='Email' label='Email:' handleChange={handleChange} name ='email' value={generalInfoState.email}/>
             <Input placeholder='Contact Number' label='Contact Number:' handleChange={handleChange} name ='contactNumber' value={generalInfoState.contactNumber}/>
-            <Textarea handleChange={handleChangeTextarea} label='Brief Summary:' placeholder='Brief Summary' name="briefSummary" value={generalInfoState.briefSummary}></Textarea>
+            <Textarea maxLength={200} handleChange={handleChangeTextarea} label='Brief Summary:' placeholder='Brief Summary (200 characters max)' name="briefSummary" value={generalInfoState.briefSummary}></Textarea>
         </div>
     )
 }
