@@ -14,7 +14,8 @@ const GeneralInfo = ()=>{
         lastName:'',
         email:'',
         contactNumber:'',
-        briefSummary:''
+        briefSummary:'',
+        address:''
     })
 
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
@@ -50,6 +51,7 @@ const GeneralInfo = ()=>{
             <Input placeholder='Last Name' label='Last Name:' handleChange={handleChange} name ='lastName' value={generalInfoState.lastName}/>
             <Input placeholder='Email' label='Email:' handleChange={handleChange} name ='email' value={generalInfoState.email}/>
             <Input placeholder='Contact Number' label='Contact Number:' handleChange={handleChange} name ='contactNumber' value={generalInfoState.contactNumber}/>
+            <Input placeholder='Address' label='Address:' handleChange={handleChange} name ='address' value={generalInfoState.address}/>
             <Textarea maxLength={200} handleChange={handleChangeTextarea} label='Brief Summary:' placeholder='Brief Summary (200 characters max)' name="briefSummary" value={generalInfoState.briefSummary}></Textarea>
         </div>
     )

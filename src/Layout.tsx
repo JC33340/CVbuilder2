@@ -1,6 +1,6 @@
 import { Outlet } from "react-router"
 import Header from './components/Header'
-import { createContext, useState} from "react"
+import { createContext, useEffect, useState} from "react"
 
 //type for general type
 type generalInfoType = {
@@ -8,7 +8,8 @@ type generalInfoType = {
     lastName:string,
     email:string,
     contactNumber:string,
-    briefSummary:string
+    briefSummary:string,
+    address:string
 }
 
 //type for education info
@@ -23,6 +24,19 @@ type educationInfoType = {
     additionalInformation?:string
 }[]|[]
 
+//type for experience
+type experienceInfoType = {
+    company?:string,
+    location?:string,
+    startDate?:string,
+    endDate?:string,
+    currentlyWorking?:boolean,
+    responsibilities?:string,
+}[]|[]
+
+//type for skills
+type skillsInfoType = string[]
+
 type contextType = {
     generalInfo:{
         state:generalInfoType,
@@ -31,6 +45,14 @@ type contextType = {
     educationInfo:{
         state:educationInfoType,
         setter:(obj:educationInfoType)=>void
+    },
+    experienceInfo:{
+        state:experienceInfoType,
+        setter:(obj:experienceInfoType)=>void
+    },
+    skillsInfo:{
+        state:skillsInfoType,
+        setter:(obj:skillsInfoType)=>void
     }
 }
 
@@ -41,13 +63,22 @@ const userContext = createContext<contextType>({
             lastName:'',
             email:'',
             contactNumber:'',
-            briefSummary:''
+            briefSummary:'',
+            address:''
         }, 
         setter:(obj:generalInfoType)=>{}
     },
     educationInfo:{
         state:[],
         setter:(obj:educationInfoType)=>{}
+    },
+    experienceInfo:{
+        state:[],
+        setter:(obj:educationInfoType)=>{}
+    },
+    skillsInfo:{
+        state:[],
+        setter:(obj:skillsInfoType)=>{}
     }
 });
 
@@ -59,7 +90,8 @@ const Layout = ()=>{
         lastName:'',
         email:'',
         contactNumber:'',
-        briefSummary:''
+        briefSummary:'',
+        address:''
     })
 
     const updateGeneralInfo = (obj:generalInfoType)=>{
@@ -69,10 +101,23 @@ const Layout = ()=>{
     //education info
     const [educationInfo,setEducationInfo] = useState<educationInfoType>([])
 
-    const updateEducationlInfo = (obj:educationInfoType)=>{
+    const updateEducationInfo = (obj:educationInfoType)=>{
         setEducationInfo(obj)
     }
 
+    //experience info
+    const [experienceInfo,setExperienceInfo] = useState<experienceInfoType>([])
+
+    const updateExperienceInfo = (obj:experienceInfoType)=>{
+        setExperienceInfo(obj)
+    }
+
+    //skills info
+    const [skillsInfo,setSkillsInfo] = useState<skillsInfoType>([])
+
+    const updateSkillsInfo = (obj:skillsInfoType)=>{
+        setSkillsInfo(obj)
+    }
     return (
         <>
             <Header />
@@ -83,7 +128,15 @@ const Layout = ()=>{
                 },
                 educationInfo:{
                     state:educationInfo,
-                    setter:updateEducationlInfo
+                    setter:updateEducationInfo
+                },
+                experienceInfo:{
+                    state:experienceInfo,
+                    setter:updateExperienceInfo
+                },
+                skillsInfo:{
+                    state:skillsInfo,
+                    setter:updateSkillsInfo
                 }
             }}>
                 <Outlet />
@@ -98,3 +151,5 @@ export {userContext}
 
 export { type generalInfoType}
 export { type educationInfoType}
+export {type experienceInfoType}
+export {type skillsInfoType}

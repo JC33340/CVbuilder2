@@ -1,8 +1,8 @@
-import AddComponentButton from "./AddComponentButton";
+import AddComponentButton from "../AddComponentButton";
 import {useState,useEffect,useContext} from 'react';
-import { userContext } from "../Layout";
+import { userContext } from "../../Layout";
 import EducationItem from "./EducationItem";
-import { type educationInfoType } from "../Layout";
+import { type educationInfoType } from "../../Layout";
 
 
 const EducationInfo = ()=>{
@@ -38,5 +38,3 @@ const EducationInfo = ()=>{
 }
 
 export default EducationInfo
-
-export {type educationInfoType}

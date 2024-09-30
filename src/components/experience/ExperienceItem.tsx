@@ -1,15 +1,13 @@
 import { SetStateAction } from "react"
-import Input from "./Input"
-import Textarea from "./Textarea"
+import Input from "../Input"
+import Textarea from "../Textarea"
+import type { experienceInfoType } from "../../Layout"
 
-import type { educationInfoType } from "./EducationInfo"
-
-const EducationItem = ({index,setter,state}:{
+const ExperienceItem = ({index,setter,state}:{
     index:number,
-    setter:React.Dispatch<SetStateAction<educationInfoType>>,
-    state:educationInfoType
+    setter:React.Dispatch<SetStateAction<experienceInfoType>>,
+    state:experienceInfoType
 })=>{
-
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
         setter(prev=>{
             const newArr = [...prev]
@@ -54,22 +52,19 @@ const EducationItem = ({index,setter,state}:{
             <div className="w-full flex justify-end ">
                 <button onClick={removeItem} className="text-[#ee1e06] font-bold bg-[#fee5e3] p-2 rounded-md hover:text-[#fee5e3] hover:bg-[#ee1e06] transition-colors">Remove item</button>
             </div>
-            <Input placeholder="Institute" label="Institute:" name='institute' value={state[index].institute?state[index].institute:''} handleChange={handleChange} />
-            <Input placeholder="Subject" label="Subject:" name='subject' value={state[index].subject?state[index].subject:''} handleChange={handleChange} />
-            <Input placeholder="Qualification level" label="Qualification level:" name='qualificationLevel' value={state[index].qualificationLevel?state[index].qualificationLevel:''} handleChange={handleChange} />
-            <Input placeholder="Grades" label="Grades:" name='grade' value={state[index].grade?state[index].grade:''} handleChange={handleChange} />
+            <Input placeholder="Company" label="Company:" name='company' value={state[index].company?state[index].company:''} handleChange={handleChange} />
+            <Input placeholder="Location" label="Location:" name='location' value={state[index].location?state[index].location:''} handleChange={handleChange} />
             <div className="flex gap-x-10">
-                <Input placeholder="" label="Currently studying here? :" name='currentlyStudying' checked={state[index].currentlyStudying} handleChange={handleChange} type='checkbox'/>
+                <Input placeholder="" label="Currently working here? :" name='currentlyWorking' checked={state[index].currentlyWorking} handleChange={handleChange} type='checkbox'/>
                 <Input placeholder="" label="Start date:" name='startDate' value={state[index].startDate?state[index].startDate:''} handleChange={handleChange} type='date'/>
-                {state[index].currentlyStudying!=true?
+                {state[index].currentlyWorking!=true?
                 <Input placeholder="" label="End Date:" name='endDate' value={state[index].endDate?state[index].endDate:''} handleChange={handleChange} type='date'/>
                     :<></>
                 }
             </div>
-            <Textarea label='Additional information:' placeholder="Additional information (max 200 characters)" handleChange={handleChangeTextarea} value={state[index].additionalInformation?state[index].additionalInformation:''} name='additionalInformation' maxLength={200}></Textarea>
+            <Textarea label='Responsibilities:' placeholder="Responsibilities (max 200 characters)" handleChange={handleChangeTextarea} value={state[index].responsibilities?state[index].responsibilities:''} name='additionalInformation' maxLength={200}></Textarea>
         </div>
     )
 }
 
-export default EducationItem
-
+export default ExperienceItem

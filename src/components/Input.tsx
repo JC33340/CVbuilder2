@@ -1,3 +1,5 @@
+
+
 type InputType = {
     placeholder:string,
     label:string,
@@ -5,14 +7,15 @@ type InputType = {
     name:string,
     value?:string,
     type?:string,
-    checked?:boolean
+    checked?:boolean,
+    onKeyUp?:(e:React.KeyboardEvent<HTMLInputElement>)=>void
 }
 
-const Input = ({placeholder,label,handleChange,name,value,type='text'}:InputType)=>{
+const Input = ({placeholder,label,handleChange,name,value,type='text',onKeyUp}:InputType)=>{
     return(
-        <div className={`flex flex-col gap-y-1 ${type==='checkbox'?'items-start':''}`}>
+        <div className={`flex flex-col gap-y-1 w-full ${type==='checkbox'?'items-start':''}`}>
             <label>{label}</label>
-            <input value={value} name = {name} type={type} className="border-[1px] border-black rounded-md p-2" placeholder={placeholder} onChange={handleChange}></input>
+            <input onKeyUp={onKeyUp} value={value} name = {name} type={type} className="border-[1px] border-black rounded-md p-2" placeholder={placeholder} onChange={handleChange}></input>
         </div>
 
     )
