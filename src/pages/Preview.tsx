@@ -1,6 +1,12 @@
+import { useContext } from "react";
+import { userContext } from "../Layout";
+
 const Preview = ()=>{
+
+    const context = useContext(userContext);
+
     return(
-        <>Preview</>
+        <>{context.generalInfo.state.firstName}</>
     )
 }
 

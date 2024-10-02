@@ -1,14 +1,12 @@
-import {useState,useEffect,useContext} from 'react';
+import {useState,useContext} from 'react';
 import { userContext } from '../../Layout';
 import AddComponentButton from '../AddComponentButton';
 import Input from '../Input';
 import SkillItem from './SkillItem';
-import type { skillsInfoType } from '../../Layout';
 
 
 const SkillsInfo = ()=>{
 
-    const [info,setInfo] = useState<skillsInfoType>([])
     const [input,setInput] = useState<string>('')
     const context = useContext(userContext);
 
@@ -17,7 +15,7 @@ const SkillsInfo = ()=>{
     }
 
     const addSkill = ()=>{
-        setInfo(prev=>{
+        context.skillsInfo.setter(prev=>{
             const newArr = [...prev]
             newArr.push(input)
             setInput('')
@@ -31,20 +29,12 @@ const SkillsInfo = ()=>{
         }
     }
 
-    useEffect(()=>{
-        context.skillsInfo.setter(info)
-    },[info])
-
-    useEffect(()=>{
-        console.log(context)
-    },[context])
-
     return(
         <div className='flex flex-col gap-y-2'>
             <div className='flex flex-wrap gap-x-2 gap-y-2'>
-                {info.map((item,i)=>{
+                {context.skillsInfo.state.map((item,i)=>{
                     return(
-                        <SkillItem setter={setInfo} skill={item} index={i}/>
+                        <SkillItem setter={context.skillsInfo.setter} skill={item} index={i}/>
                     )
                 })}
             </div>

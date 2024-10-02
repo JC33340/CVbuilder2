@@ -1,6 +1,6 @@
 import { Outlet } from "react-router"
 import Header from './components/Header'
-import { createContext, useEffect, useState} from "react"
+import { createContext, useState} from "react"
 
 //type for general type
 type generalInfoType = {
@@ -40,19 +40,19 @@ type skillsInfoType = string[]
 type contextType = {
     generalInfo:{
         state:generalInfoType,
-        setter:(obj:generalInfoType)=>void
+        setter:(React.Dispatch<React.SetStateAction<generalInfoType>>|(()=>void))
     },
     educationInfo:{
         state:educationInfoType,
-        setter:(obj:educationInfoType)=>void
+        setter:(React.Dispatch<React.SetStateAction<educationInfoType>>|(()=>void))
     },
     experienceInfo:{
         state:experienceInfoType,
-        setter:(obj:experienceInfoType)=>void
+        setter:(React.Dispatch<React.SetStateAction<experienceInfoType>>|(()=>void))
     },
     skillsInfo:{
         state:skillsInfoType,
-        setter:(obj:skillsInfoType)=>void
+        setter:(React.Dispatch<React.SetStateAction<skillsInfoType>>|(()=>void))
     }
 }
 
@@ -66,19 +66,19 @@ const userContext = createContext<contextType>({
             briefSummary:'',
             address:''
         }, 
-        setter:(obj:generalInfoType)=>{}
+        setter:()=>{}
     },
     educationInfo:{
         state:[],
-        setter:(obj:educationInfoType)=>{}
+        setter:()=>{}
     },
     experienceInfo:{
         state:[],
-        setter:(obj:educationInfoType)=>{}
+        setter:()=>{}
     },
     skillsInfo:{
         state:[],
-        setter:(obj:skillsInfoType)=>{}
+        setter:()=>{}
     }
 });
 
@@ -94,49 +94,34 @@ const Layout = ()=>{
         address:''
     })
 
-    const updateGeneralInfo = (obj:generalInfoType)=>{
-        setGeneralInfo(obj)
-    }
-
     //education info
     const [educationInfo,setEducationInfo] = useState<educationInfoType>([])
-
-    const updateEducationInfo = (obj:educationInfoType)=>{
-        setEducationInfo(obj)
-    }
 
     //experience info
     const [experienceInfo,setExperienceInfo] = useState<experienceInfoType>([])
 
-    const updateExperienceInfo = (obj:experienceInfoType)=>{
-        setExperienceInfo(obj)
-    }
-
     //skills info
     const [skillsInfo,setSkillsInfo] = useState<skillsInfoType>([])
 
-    const updateSkillsInfo = (obj:skillsInfoType)=>{
-        setSkillsInfo(obj)
-    }
     return (
         <>
             <Header />
             <userContext.Provider value={{
                 generalInfo:{
                     state:generalInfo,
-                    setter:updateGeneralInfo
+                    setter:setGeneralInfo
                 },
                 educationInfo:{
                     state:educationInfo,
-                    setter:updateEducationInfo
+                    setter:setEducationInfo
                 },
                 experienceInfo:{
                     state:experienceInfo,
-                    setter:updateExperienceInfo
+                    setter:setExperienceInfo
                 },
                 skillsInfo:{
                     state:skillsInfo,
-                    setter:updateSkillsInfo
+                    setter:setSkillsInfo
                 }
             }}>
                 <Outlet />
