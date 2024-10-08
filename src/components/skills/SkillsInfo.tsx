@@ -38,7 +38,7 @@ const SkillsInfo = ()=>{
                     )
                 })}
             </div>
-            <div className='flex items-end gap-x-4 '>
+            <div className='flex flex-col items-start gap-y-4 md:flex-row md:items-end gap-x-4 '>
                 <Input onKeyUp={handleKeyUp} placeholder='Skill' label='Skill:' name='skill' handleChange={handleInputChange} value={input} />
                 <AddComponentButton handleClick={addSkill} placeholder='Add skill' />
             </div>

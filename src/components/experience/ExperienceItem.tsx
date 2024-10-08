@@ -55,7 +55,7 @@ const ExperienceItem = ({index,setter,state}:{
             <Input placeholder="Role" label="Role:" name='role' value={state[index].role?state[index].role:''} handleChange={handleChange} />
             <Input placeholder="Company" label="Company:" name='company' value={state[index].company?state[index].company:''} handleChange={handleChange} />
             <Input placeholder="Location" label="Location:" name='location' value={state[index].location?state[index].location:''} handleChange={handleChange} />
-            <div className="flex gap-x-10">
+            <div className="flex gap-x-10 gap-y-2 flex-col md:flex-row">
                 <Input placeholder="" label="Currently working here? :" name='currentlyWorking' checked={state[index].currentlyWorking} handleChange={handleChange} type='checkbox'/>
                 <Input placeholder="" label="Start date:" name='startDate' value={state[index].startDate?state[index].startDate:''} handleChange={handleChange} type='date'/>
                 {state[index].currentlyWorking!=true?

@@ -58,7 +58,7 @@ const EducationItem = ({index,setter,state}:{
             <Input placeholder="Subject" label="Subject:" name='subject' value={state[index].subject?state[index].subject:''} handleChange={handleChange} />
             <Input placeholder="Qualification level" label="Qualification level:" name='qualificationLevel' value={state[index].qualificationLevel?state[index].qualificationLevel:''} handleChange={handleChange} />
             <Input placeholder="Grades" label="Grades:" name='grade' value={state[index].grade?state[index].grade:''} handleChange={handleChange} />
-            <div className="flex gap-x-10">
+            <div className="flex gap-x-10 gap-y-2  flex-col md:flex-row">
                 <Input placeholder="" label="Currently studying here? :" name='currentlyStudying' checked={state[index].currentlyStudying} handleChange={handleChange} type='checkbox'/>
                 <Input placeholder="" label="Start date:" name='startDate' value={state[index].startDate?state[index].startDate:''} handleChange={handleChange} type='date'/>
                 {state[index].currentlyStudying!=true?
