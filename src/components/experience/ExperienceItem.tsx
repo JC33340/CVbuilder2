@@ -52,6 +52,7 @@ const ExperienceItem = ({index,setter,state}:{
             <div className="w-full flex justify-end ">
                 <button onClick={removeItem} className="text-[#ee1e06] font-bold bg-[#fee5e3] p-2 rounded-md hover:text-[#fee5e3] hover:bg-[#ee1e06] transition-colors">Remove item</button>
             </div>
+            <Input placeholder="Role" label="Role:" name='role' value={state[index].role?state[index].role:''} handleChange={handleChange} />
             <Input placeholder="Company" label="Company:" name='company' value={state[index].company?state[index].company:''} handleChange={handleChange} />
             <Input placeholder="Location" label="Location:" name='location' value={state[index].location?state[index].location:''} handleChange={handleChange} />
             <div className="flex gap-x-10">
@@ -62,7 +63,7 @@ const ExperienceItem = ({index,setter,state}:{
                     :<></>
                 }
             </div>
-            <Textarea label='Responsibilities:' placeholder="Responsibilities (max 200 characters)" handleChange={handleChangeTextarea} value={state[index].responsibilities?state[index].responsibilities:''} name='additionalInformation' maxLength={200}></Textarea>
+            <Textarea label='Responsibilities:' placeholder="Responsibilities (max 200 characters)" handleChange={handleChangeTextarea} value={state[index].responsibilities?state[index].responsibilities:''} name='responsibilities' maxLength={200}></Textarea>
         </div>
     )
 }

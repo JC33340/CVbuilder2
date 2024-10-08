@@ -1,6 +1,7 @@
 import { Outlet } from "react-router"
 import Header from './components/Header'
-import { createContext, useState} from "react"
+import { createContext, useState, useEffect} from "react"
+import useSetStorage from '../util/useSetStorage'
 
 //type for general type
 type generalInfoType = {
@@ -32,6 +33,7 @@ type experienceInfoType = {
     endDate?:string,
     currentlyWorking?:boolean,
     responsibilities?:string,
+    role?:string
 }[]|[]
 
 //type for skills
@@ -84,6 +86,27 @@ const userContext = createContext<contextType>({
 
 const Layout = ()=>{
 
+    //using mount custom hook
+    useEffect(()=>{
+        const localGeneralInfo = localStorage.getItem('generalInfoCVbuilder')
+        if(localGeneralInfo){
+            setGeneralInfo(JSON.parse(localGeneralInfo))
+        }
+        const localEducationInfo = localStorage.getItem('educationInfoCVbuilder')
+        if(localEducationInfo){
+            setEducationInfo(JSON.parse(localEducationInfo))
+        }
+        const localExperienceInfo = localStorage.getItem('experienceInfoCVbuilder')
+        if(localExperienceInfo){
+            setExperienceInfo(JSON.parse(localExperienceInfo))
+        }
+        const localSkillsInfo = localStorage.getItem('skillsInfoCVbuilder')
+        if(localSkillsInfo){
+            setSkillsInfo(JSON.parse(localSkillsInfo))
+        }
+    },[])
+
+
     //general info
     const [generalInfo,setGeneralInfo] = useState<generalInfoType>({
         firstName:'',
@@ -94,6 +117,7 @@ const Layout = ()=>{
         address:''
     })
 
+
     //education info
     const [educationInfo,setEducationInfo] = useState<educationInfoType>([])
 
@@ -102,6 +126,19 @@ const Layout = ()=>{
 
     //skills info
     const [skillsInfo,setSkillsInfo] = useState<skillsInfoType>([])
+    
+    //setting local storage
+    const localArr = [
+        {name:'generalInfoCVbuilder',state:generalInfo},
+        {name:'educationInfoCVbuilder',state:educationInfo},
+        {name:'experienceInfoCVbuilder',state:experienceInfo},
+        {name:'skillsInfoCVbuilder',state:skillsInfo},
+    ]
+    localArr.map((item)=>{
+        useSetStorage(item.name,item.state)
+    })
+
+
 
     return (
         <>
@@ -138,3 +175,4 @@ export { type generalInfoType}
 export { type educationInfoType}
 export {type experienceInfoType}
 export {type skillsInfoType}
+export {type contextType}

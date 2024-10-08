@@ -39,7 +39,7 @@ const GeneralInfo = ()=>{
             <Input placeholder='Email' label='Email:' handleChange={handleChange} name ='email' value={context.generalInfo.state.email}/>
             <Input placeholder='Contact Number' label='Contact Number:' handleChange={handleChange} name ='contactNumber' value={context.generalInfo.state.contactNumber}/>
             <Input placeholder='Address' label='Address:' handleChange={handleChange} name ='address' value={context.generalInfo.state.address}/>
-            <Textarea maxLength={200} handleChange={handleChangeTextarea} label='Brief Summary:' placeholder='Brief Summary (200 characters max)' name="briefSummary" value={context.generalInfo.state.briefSummary}></Textarea>
+            <Textarea maxLength={600} handleChange={handleChangeTextarea} label='Brief Summary:' placeholder='Brief Summary (600 characters max)' name="briefSummary" value={context.generalInfo.state.briefSummary}></Textarea>
         </div>
     )
 }

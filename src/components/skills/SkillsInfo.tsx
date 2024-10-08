@@ -34,7 +34,7 @@ const SkillsInfo = ()=>{
             <div className='flex flex-wrap gap-x-2 gap-y-2'>
                 {context.skillsInfo.state.map((item,i)=>{
                     return(
-                        <SkillItem setter={context.skillsInfo.setter} skill={item} index={i}/>
+                        <SkillItem key={i} setter={context.skillsInfo.setter} skill={item} index={i}/>
                     )
                 })}
             </div>

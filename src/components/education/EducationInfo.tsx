@@ -21,7 +21,7 @@ const EducationInfo = ()=>{
             <div className="flex flex-col gap-y-2 w-full">
                 {context.educationInfo.state.map((item,i)=>{
                     return(
-                        <EducationItem setter={context.educationInfo.setter} index={i} state={context.educationInfo.state}/>
+                        <EducationItem key={i} setter={context.educationInfo.setter} index={i} state={context.educationInfo.state}/>
                     )
                 })}
             </div>
