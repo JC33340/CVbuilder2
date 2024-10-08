@@ -39,6 +39,7 @@ type experienceInfoType = {
 //type for skills
 type skillsInfoType = string[]
 
+
 type contextType = {
     generalInfo:{
         state:generalInfoType,
@@ -126,6 +127,7 @@ const Layout = ()=>{
 
     //skills info
     const [skillsInfo,setSkillsInfo] = useState<skillsInfoType>([])
+
     
     //setting local storage
     const localArr = [
