@@ -20,7 +20,7 @@ const ExperienceInfo = ()=>{
             <div className="flex flex-col gap-y-2 w-full">
                 {context.experienceInfo.state.map((item,i)=>{
                     return(
-                        <ExperienceItem key={i} state={context.experienceInfo.state} setter={context.experienceInfo.setter} index={i} />
+                        <ExperienceItem key={item.company} state={context.experienceInfo.state} setter={context.experienceInfo.setter} index={i} />
                     )
                 })}
             </div>
