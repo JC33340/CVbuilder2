@@ -1,8 +1,8 @@
 {
   "name": "cvbuilder-2",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
-  "homepage": "https://JC33340.github.io/CVbuilder.2/",
+  "homepage": "https://JC33340.github.io/CVbuilder2",
   "type": "module",
   "scripts": {
     "dev": "vite",
