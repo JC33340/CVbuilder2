@@ -102,10 +102,10 @@ const PDFDocument = ({context}:{
             </View>
             
             {/* About section */}
-            <View style={styles.section}>
+            {context.generalInfo.state.briefSummary && <View style={styles.section}>
                 <Text style={styles.boldText}>About</Text>
                 <Text style={[styles.smallText]}>{context.generalInfo.state.briefSummary}</Text>
-            </View>
+            </View>}
 
             {/* Education section */}
             {context.educationInfo.state.length>0 && <View style={styles.section}>
